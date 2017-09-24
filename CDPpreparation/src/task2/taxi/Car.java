@@ -2,9 +2,18 @@ package task2.taxi;
 
 public class Car extends Vehicle {
 	private String name;
-	private static final int NSEATS = 3;
+	private static final int NSEATS = 4;
 	private double consumption;
-	private Cost carcost;
+	private Cost buscost;
+
+	
+	public Cost getBuscost() {
+		return buscost;
+	}
+
+	public void setBuscost(Cost buscost) {
+		this.buscost = buscost;
+	}
 
 	public String getName() {
 		return name;
@@ -26,17 +35,14 @@ public class Car extends Vehicle {
 		return NSEATS;
 	}
 
-	public Car() {
-	}
-
 	public Car(String name, double consumption) {
-		super();
 		this.name = name;
 		this.consumption = consumption;
 	}
 
 	@Override
 	public void createOrder() {
+	System.out.println("заказ л/a: ");
 	}
 
 	@Override
@@ -45,7 +51,7 @@ public class Car extends Vehicle {
 
 	@Override
 	public String toString() {
-		return "Car [name=" + name + ", consumption=" + consumption + "]";
+		return "Bus [name=" + name + ", consumption=" + consumption + "]";
 	}
 
 }

@@ -14,15 +14,18 @@ public class App {
 	static Map<Vehicle, Integer> taxiCompany;
 
 	public static void main(String[] args) throws IOException {
-
 		BufferedReader reader = new BufferedReader(new InputStreamReader(
 				System.in));
 		System.out.println("¬ы хотите заказать такси?" + "\n y - продолжить"
 				+ "\n люба€ клавиша - отказатьс€");
-		while (!reader.readLine().equals("y")) {
+		while (!reader.readLine().isEmpty()) {
 			System.out.println("¬озвращайтесь, когда захотите");
-			return;
+			break;
 		}
+		System.out.println("¬ведите кол-во пассажиров: ");
+		int passengerN = Integer.parseInt(reader.readLine());
+
+		defineOrder(passengerN);
 		createTaxiC();
 		countTotalCarsCost();
 		List<Vehicle> vehicles = sortByConsumption();
@@ -68,4 +71,33 @@ public class App {
 		});
 		return vehicles;
 	}
+
+	public static void defineOrder(int passN) {
+		switch (passN) {
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		/*	taxiCompany.get(new Car(name, consumption));
+			new Car("Audi", 9.0).createOrder();*/
+			System.out.println("кол-во 1-4");
+			
+		break;
+		case 5:
+		case 6:
+			System.out.println("кол-во 5-6");
+			break;
+		case 7:
+		case 8:
+		case 9:
+		case 10:
+			System.out.println("кол-во 7-10");
+			break;
+		default:
+			System.out.println("введено неправильное кол-во");
+			break;
+		}
+
+	}
+
 }

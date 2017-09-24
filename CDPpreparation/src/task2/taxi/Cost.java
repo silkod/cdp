@@ -1,14 +1,14 @@
 package task2.taxi;
 
 public class Cost {
-	private int carCost;
-
-	public int getCarCost() {
-		return carCost;
+	private int amount;
+	private String currency;
+	public String getCurrency() {
+		return currency;
+	}
+	public void setCurrency(String currency) {
+		this.currency = currency;
 	}
 
-	public void setCarCost(int carCost) {
-		this.carCost = carCost;
-	}
 
 }
