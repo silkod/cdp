@@ -1,0 +1,110 @@
+package collections;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
+
+public class CollecCompare {
+
+	public static void main(String[] args) {
+
+		List<Integer> alist = new ArrayList<>();
+		List<Integer> llist = new LinkedList<>();
+		Set<Integer> hset = new HashSet<>();
+		Set<Integer> tset = new TreeSet<>();
+		Map<Integer, Integer> hmap = new HashMap<>();
+		Map<Integer, Integer> tmap = new TreeMap<>();
+
+		fill(alist, "arraylist");
+		fill(llist, "llist");
+		fill(hset, "hashset");
+		fill(tset, "treeset");
+		fillMap(hmap, "hashmap");
+		fillMap(tmap, "treemap");
+
+		searchElList(alist, "arraylist");
+		searchElList(llist, "llist");
+		searchElset(hset, "hashset");
+		searchElset(tset, "treeset");
+		searchElMap(hmap, "hashmap");
+		searchElMap(tmap, "treemap");
+
+		remove(alist, "arraylist");
+		remove(llist, "llist");
+		remove(hset, "hashset");
+		remove(tset, "treeset");
+		removeMap(hmap, "hashmap");
+		removeMap(tmap, "treemap");
+	}
+//adding elements to Collections;
+	public static void fill(Collection<Integer> col, String name) {
+		long startT = System.currentTimeMillis();
+		for (int i = 0; i < 10000; i++) {
+			col.add(i);
+		}
+		long endT = System.currentTimeMillis();
+		long proccessT = endT - startT;
+		System.out.println("time for adding elements to " + name + " is " + proccessT + " ms");
+	}
+
+	public static void fillMap(Map<Integer, Integer> m, String name) {
+		long startT = System.currentTimeMillis();
+		for (int i = 0; i < 10000; i++) {
+			m.put(i, i);
+		}
+		long endT = System.currentTimeMillis();
+		long proccessT = endT - startT;
+		System.out.println("time for adding elements to " + name + " is " + proccessT + " ms");
+	}
+	//removing elements from Collections;
+	public static void remove(Collection<Integer> col, String name) {
+		long startT = System.currentTimeMillis();
+		for (int i = 0; i < col.size(); i++) {
+			col.remove(i);
+		}
+		long endT = System.currentTimeMillis();
+		long proccessT = endT - startT;
+		System.out.println("time for removing elements from " + name + " is " + proccessT + " ms");
+	}
+
+	public static void removeMap(Map<Integer, Integer> m, String name) {
+		long startT = System.currentTimeMillis();
+		for (int i = 0; i < m.size(); i++) {
+			m.remove(i);
+		}
+		long endT = System.currentTimeMillis();
+		long proccessT = endT - startT;
+		System.out.println("time for removing elements from " + name + " is " + proccessT + " ms");
+	}
+//searching for an element in a collection;
+	public static void searchElList(List<Integer> list, String name) {
+		long startT = System.currentTimeMillis();
+		list.get(1505);
+		long endT = System.currentTimeMillis();
+		long proccessT = endT - startT;
+		System.out.println("time for searching an element in " + name + " is " + proccessT + " ms");
+	}
+
+	public static void searchElset(Set<Integer> set, String name) {
+		long startT = System.currentTimeMillis();
+		set.contains(1505);
+		long endT = System.currentTimeMillis();
+		long proccessT = endT - startT;
+		System.out.println("time for searching an element in " + name + " is " + proccessT + " ms");
+	}
+
+	public static void searchElMap(Map<Integer, Integer> m, String name) {
+		long startT = System.currentTimeMillis();
+		m.get(1505);
+		long endT = System.currentTimeMillis();
+		long proccessT = endT - startT;
+		System.out.println("time for searching from " + name + " is " + proccessT + " ms");
+	}
+}
