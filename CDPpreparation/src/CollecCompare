@@ -42,6 +42,9 @@ public class CollecCompare {
 		remove(tset, "treeset");
 		removeMap(hmap, "hashmap");
 		removeMap(tmap, "treemap");
+		
+	
+		
 	}
 //adding elements to Collections;
 	public static void fill(Collection<Integer> col, String name) {
@@ -66,7 +69,7 @@ public class CollecCompare {
 	//removing elements from Collections;
 	public static void remove(Collection<Integer> col, String name) {
 		long startT = System.currentTimeMillis();
-		for (int i = 0; i < col.size(); i++) {
+		for (int i = 0; i < 10000; i++) {
 			col.remove(i);
 		}
 		long endT = System.currentTimeMillis();
@@ -76,9 +79,10 @@ public class CollecCompare {
 
 	public static void removeMap(Map<Integer, Integer> m, String name) {
 		long startT = System.currentTimeMillis();
-		for (int i = 0; i < m.size(); i++) {
+		for (int i = 0; i < 10000; i++) {
 			m.remove(i);
 		}
+		
 		long endT = System.currentTimeMillis();
 		long proccessT = endT - startT;
 		System.out.println("time for removing elements from " + name + " is " + proccessT + " ms");
