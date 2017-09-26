@@ -1,0 +1,122 @@
+package taxi;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+
+import javax.swing.plaf.basic.BasicBorders.RadioButtonBorder;
+
+public class CarOrder<T extends Vehicle> {
+
+	public List<Vehicle> carsOrdered = new ArrayList<Vehicle>();
+	public static Map<Vehicle, Integer> taxiCompany;
+	public static Vehicle audi, vw, bmw, vw2, peugeot, mercedes;
+	static BufferedReader reader;
+	
+	
+	public static void main(String[] args) throws IOException {
+		CarOrder<Vehicle> order = new CarOrder<Vehicle>();
+
+		audi = new Car("Audi", 9.0);
+		vw = new Car("VW", 7.5);
+		bmw = new Car("BMW", 11.5);
+		vw2 = new Van("VW", 10.5);
+		peugeot = new Van("Peugeot", 11.0);
+		mercedes = new Bus("Mercedes", 13.5);
+
+		ArrayList<Vehicle> allVehicles = new ArrayList<>();
+		allVehicles.add(audi);
+		allVehicles.add(vw);
+		allVehicles.add(bmw);
+		allVehicles.add(vw2);
+		allVehicles.add(peugeot);
+		allVehicles.add(mercedes);
+
+		ArrayList<Vehicle> vansAndBuses = new ArrayList<>();
+		vansAndBuses.add(vw2);
+		vansAndBuses.add(peugeot);
+		vansAndBuses.add(mercedes);
+
+		//////
+/*	 reader = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("continue? y/any key");
+		while (!reader.readLine().equals("y")) {
+			System.out.println("bye!");
+			return;
+		}
+		System.out.println("number of seats or n: ");
+		int passN =  defineNseats();
+		
+		System.out.println("number of seats : ");
+							*/
+		
+		////////
+		int passN = 7;
+		order.defineOrder(passN, allVehicles, vansAndBuses, mercedes);
+		System.out.println(order.toString());
+	}
+
+	public static int defineNseats() throws NumberFormatException, IOException{
+		int passengerN =0;
+		
+		while (!reader.readLine().equals("n")) {
+			passengerN = Integer.parseInt(reader.readLine()); 
+			}
+			
+		return passengerN;
+		
+	}
+	
+	public void enter(Vehicle item) {
+		carsOrdered.add(item);
+	}
+
+	public void defineOrder(int passN, List<Vehicle> list, List<Vehicle> list2, Vehicle vehicle) {
+		Vehicle item, item2, item3;
+		Random randomGenerator = new Random();
+		
+		switch (passN) {
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+			int index = randomGenerator.nextInt(list.size());
+			item = list.get(index);
+			enter(item);
+			break;
+		case 5:
+		case 6:
+			int index2 = randomGenerator.nextInt(list2.size());
+			item2 = list2.get(index2);
+			enter(item2);
+			break;
+		case 7:
+		case 8:
+			item3 = vehicle;
+			enter(item3);
+			break;
+		default:
+			System.out.println("ââåäåíî íåïðàâèëüíîå êîë-âî");
+			break;
+		}
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("В заказ входит:\n");
+		for (Object car : carsOrdered) {
+			builder.append(car.toString()).append("\n");
+		}
+		return builder.toString();
+	}
+
+}
